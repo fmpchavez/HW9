@@ -3,7 +3,7 @@ const path = require("path");
 const fs = require("fs");
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const mainDir = path.join(__dirname, "/public");
 
 app.use(express.static('public'));
@@ -23,7 +23,7 @@ app.get("/api/notes/:id", function(req, res) {
     res.json(savedNotes[Number(req.params.id)]);
 });
 
-app.get("*", function(req, res) {
+app.get("/", function(req, res) {
     res.sendFile(path.join(mainDir, "index.html"));
 });
 
